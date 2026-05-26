@@ -1,0 +1,12 @@
+---
+- name: Automated Security Patching
+  hosts: all
+  become: yes
+  tasks:
+    - name: Refresh package repository cache (apt-get update)
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Upgrade all packages to patch vulnerabilities
+      ansible.builtin.apt:
+        upgrade: yes
