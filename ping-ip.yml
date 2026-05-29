@@ -1,0 +1,7 @@
+---
+- name: Ping Test for Lab Servers
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ping the server to check SSH connectivity
+      ansible.builtin.ping:
