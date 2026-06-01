@@ -1,12 +1,21 @@
 ---
-- name: Automated Security Patching
+- name: Sentinel360 Automated Patch Management
   hosts: all
-  become: yes
   tasks:
-    - name: Refresh package repository cache (apt-get update)
-      ansible.builtin.apt:
-        update_cache: yes
 
-    - name: Upgrade all packages to patch vulnerabilities
-      ansible.builtin.apt:
-        upgrade: yes
+    # Kali Linux Patching
+    - name: Update and upgrade apt packages (Kali Linux)
+      become: yes
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    # Windows Patching
+    - name: Install Windows Security Updates
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - CriticalUpdates
+        state: installed
+      when: ansible_os_family == "Windows"
