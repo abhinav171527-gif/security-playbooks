@@ -3,14 +3,6 @@
   hosts: all
   tasks:
 
-    # Kali Linux Patching
-    - name: Update and upgrade apt packages (Kali Linux)
-      become: yes
-      apt:
-        upgrade: dist
-        update_cache: yes
-      when: ansible_os_family == "Debian"
-
     # Windows Patching
     - name: Install Windows Security Updates
       win_updates:
