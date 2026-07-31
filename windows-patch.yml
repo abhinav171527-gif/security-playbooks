@@ -1,5 +1,5 @@
 ---
-- name: Sentinel360 Automated Patch Management
+- name:  Automated Patch Management
   hosts: all
   tasks:
 
